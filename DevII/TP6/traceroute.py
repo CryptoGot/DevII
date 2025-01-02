@@ -35,8 +35,8 @@ def lets_go(target, progressive, output_file):
 def main():
     parser = argparse.ArgumentParser()# pour les arguments qu il accepte
     parser.add_argument("target")
-    parser.add_argument("-p", "--progressive")
-    parser.add_argument("-o", "--output-file")
+    parser.add_argument("-t", "--traceroute", help="URL ou IP à tracer")
+    parser.add_argument("-m", "--music", help="Chemin vers un fichier de musique à jouer")
 
     args = parser.parse_args() # pour analysser les argu pour qu il soit accesible via args
     lets_go(args.target, args.progressive, args.output_file)#appeler la methods
