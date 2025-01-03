@@ -391,15 +391,15 @@ class Fraction:
         - Les deux fractions doivent être simplifiées.
 
         POST :
-        - Retourne True si la différence absolue entre les
-        deux fractions est une fraction unitaire
-        (dont le numérateur est égal à 1 dans
-        sa forme simplifiée), sinon False.
+        - Retourne True si la différence absolue entre les deux
+        fractions est une fraction unitaire
+        (dont le numérateur est égal à 1 dans sa
+        forme simplifiée), sinon False.
 
         RAISES :
         - TypeError : Si `other` n'est pas une instance de la classe Fraction.
-        - ZeroDivisionError : Si l'une des
-        fractions a un dénominateur égal à zéro.
+        - ZeroDivisionError : Si l'une des fractions
+        a un dénominateur égal à zéro.
         """
         if not isinstance(other, Fraction):
             raise TypeError(
@@ -408,5 +408,10 @@ class Fraction:
             raise ZeroDivisionError(
                 "Le dénominateur d'une fraction ne peut pas être zéro.")
 
-        difference = abs(self.num / self.den - other.num / other.den)
-        return Fraction(difference).num == 1
+        # Calcule la différence entre les deux fractions
+        difference_num = self.num * other.den - other.num * self.den
+        difference_den = self.den * other.den
+
+        # Simplifie la différence et vérifie si c'est une fraction unitaire
+        difference = Fraction(difference_num, difference_den)
+        return abs(difference.num) == 1
